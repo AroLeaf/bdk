@@ -1,0 +1,173 @@
+mixin modal(name)
+  .modal(id=name onclick="this.classList.remove('active')")
+    .content(onclick="event.stopPropagation()")
+      if block
+        block
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    
+    script(src="https://cdn.jsdelivr.net/npm/chart.js")
+    link(rel="stylesheet", href="style.css")
+    
+    title Interactive BMC
+  
+  body
+    script.
+      Chart.defaults.borderColor = '#26a6f2';
+      Chart.defaults.backgroundColor = '#26a6f2';
+      Chart.defaults.color = '#ffffff';
+      Chart.defaults.font = {
+        size: 16,
+        family: 'Roboto',
+      };
+
+      function openModal(name) {
+        document.querySelector(`.modal#${name}`).classList.add('active');
+      }
+
+      function defaultChart(canvas, options) {
+        new Chart(canvas, {
+          type: options.type,
+          data: options.data,
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  color: '#26a6f27f',
+                },
+                title: options.y && {
+                  display: true,
+                  text: options.y,
+                },
+              },
+              x: {
+                grid: {
+                  color: '#26a6f27f',
+                },
+                title: options.x && {
+                  display: true,
+                  text: options.x,
+                },
+              },
+            },
+          },
+        });
+      }
+
+    header
+      svg(width="100vw" height="128px" viewBox="0 0 1920 128" preserveAspectRatio="none")
+        path(d=`
+          M 0 96
+          L 384 96
+          L 480 0
+          L 1920 0
+          L 1920 64
+          L 1024 64
+          L 992 96
+          L 480 96
+          L 448 128
+          L 0 128
+          Z
+        ` fill="var(--fg)")
+      img(src='assets/logo_dark.png').logo
+      h1.name Some Name Inc.
+        
+
+    main
+      .vertical
+        .horizontal
+          .item(onclick="openModal('key-partners')")
+            h1 Key partners
+            ul
+              li one
+              li two
+              li three
+          
+          .vertical
+            .item(onclick="openModal('kernactiviteiten')")
+              h1 Kernactiviteiten
+              ul
+                li one
+                li two
+                li three
+            
+            .item(onclick="openModal('key-resources')")
+              h1 Key resources
+              ul
+                li one
+                li two
+                li three
+          
+          .item(onclick="openModal('waardeproposities')")
+            h1 Waardeproposities
+            ul
+              li Autonoom
+              li Veilig
+              li Efficiënt
+              li Multifunctioneel
+          
+          .vertical
+            .item(onclick="openModal('klantrelaties')")
+              h1 Klantrelaties
+              ul
+                li Langdurige contracten
+                li Onderhoud
+                li Ondersteuning
+            
+            .item(onclick="openModal('kanalen')")
+              h1 Kanalen
+              ul
+                li Directe verkoop
+                li Onderaanneming
+          
+          .item(onclick="openModal('klantsegmenten')")
+              h1 Klantsegmenten
+              ul
+                li Militaire organisaties
+                li Privélegers
+                li Particulieren (alleen met basisfunctionaliteit)
+        
+        .horizontal
+          .item(onclick="openModal('kostenstructuur')")
+            h1 Kostenstructuur
+            ul
+              li one
+              li two
+              li three
+          
+          .item(onclick="openModal('inkomstenstromen')")
+            h1 Inkomstenstromen
+            ul
+              li Verkoop
+              li Onderhoud
+              li Modernisering
+              li On-site productie
+
+
+    footer
+      p © 2023 #[a(href="https://github.com/aroleaf") Leaf] (website, graphics), Hanze HBO-ICT klas 1F leerteam 1 (content)
+
+
+    +modal('key-partners')
+      include modals/key-partners.pug
+    +modal('kernactiviteiten')
+      include modals/kernactiviteiten.pug
+    +modal('key-resources')
+      include modals/key-resources.pug
+    +modal('waardeproposities')
+      include modals/waardeproposities.pug
+    +modal('klantrelaties')
+      include modals/klantrelaties.pug
+    +modal('kanalen')
+      include modals/kanalen.pug
+    +modal('klantsegmenten')
+      include modals/klantsegmenten.pug
+    +modal('kostenstructuur')
+      include modals/kostenstructuur.pug
+    +modal('inkomstenstromen')
+      include modals/inkomstenstromen.pug

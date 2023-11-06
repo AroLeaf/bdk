@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;700&display=swap');
+
+:root {
+  --fg    : #d9590d;
+  --bg    : #ffffff;
+  --bg-alt: #595959;
+  --fg-alt: #26a6f2;
+}
+
+h1,h2,h3,h4,h5,h6,p,ul,ol,li {
+  padding: 0px;
+  margin: 0px;
+}
+
+ul,ol {
+  list-style: inside;
+}
+
+a {
+  color: var(--fg-alt);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-family: 'Teko';
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: 'Roboto';
+  font-size: 20px;
+  font-weight: 500;
+  padding: 0px;
+  margin: 0px;
+}
+
+
+header .logo {
+  position: absolute;
+  top: -6px;
+  left: 32px;
+  width: 256px;
+  height: 96px;
+  object-fit: cover;
+}
+
+header .name {
+  position: absolute;
+  top: 0px;
+  left: 512px;
+  color: var(--bg);
+  font-size: 64px;
+}
+
+
+main {
+  position: relative;
+  flex-grow: 1;
+  background-color: var(--bg);
+  padding: 32px;
+}
+main > * {
+  height: 100%;
+}
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+.horizontal > * {
+  flex-grow: 1;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.vertical > * {
+  flex-grow: 1;
+}
+
+.item {
+  padding: 16px;
+  background-color: var(--fg);
+  color: var(--bg);
+  transition: .15s;
+  cursor: pointer;
+}
+.item:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 8px -2px #000;
+}
+
+
+.modal {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 64px;
+  background-color: #000000bf;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: -999;
+  opacity: 0;
+  transition: .15s;
+}
+.modal.active {
+  opacity: 1;
+  z-index: 999;
+}
+
+.modal .content {
+  padding: 32px;
+  background-color: var(--fg);
+  color: var(--bg);
+  overflow: auto;
+}
+
+
+footer {
+  padding: 8px 32px;
+  color: var(--fg);
+  font-size: 16px;
+}
+
+@media all and (display-mode: fullscreen) {
+  footer {
+    display: none;
+  }
+}

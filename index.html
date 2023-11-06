@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://cdn.jsdelivr.net/npm/chart.js"></script><link rel="stylesheet" href="style.css"><title>Interactive BMC</title></head><body><script>Chart.defaults.borderColor = '#26a6f2';
+Chart.defaults.backgroundColor = '#26a6f2';
+Chart.defaults.color = '#ffffff';
+Chart.defaults.font = {
+  size: 16,
+  family: 'Roboto',
+};
+
+function openModal(name) {
+  document.querySelector(`.modal#${name}`).classList.add('active');
+}
+
+function defaultChart(canvas, options) {
+  new Chart(canvas, {
+    type: options.type,
+    data: options.data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          grid: {
+            color: '#26a6f27f',
+          },
+          title: options.y && {
+            display: true,
+            text: options.y,
+          },
+        },
+        x: {
+          grid: {
+            color: '#26a6f27f',
+          },
+          title: options.x && {
+            display: true,
+            text: options.x,
+          },
+        },
+      },
+    },
+  });
+}
+</script><header><svg width="100vw" height="128px" viewBox="0 0 1920 128" preserveAspectRatio="none"><path d="
+          M 0 96
+          L 384 96
+          L 480 0
+          L 1920 0
+          L 1920 64
+          L 1024 64
+          L 992 96
+          L 480 96
+          L 448 128
+          L 0 128
+          Z
+        " fill="var(--fg)"></path></svg><img class="logo" src="assets/logo_dark.png"><h1 class="name">Some Name Inc.</h1></header><main><div class="vertical"><div class="horizontal"><div class="item" onclick="openModal('key-partners')"><h1>Key partners</h1><ul><li>one</li><li>two</li><li>three</li></ul></div><div class="vertical"><div class="item" onclick="openModal('kernactiviteiten')"><h1>Kernactiviteiten</h1><ul><li>one</li><li>two</li><li>three</li></ul></div><div class="item" onclick="openModal('key-resources')"><h1>Key resources</h1><ul><li>one</li><li>two</li><li>three</li></ul></div></div><div class="item" onclick="openModal('waardeproposities')"><h1>Waardeproposities</h1><ul><li>Autonoom</li><li>Veilig</li><li>Efficiënt</li><li>Multifunctioneel</li></ul></div><div class="vertical"><div class="item" onclick="openModal('klantrelaties')"><h1>Klantrelaties</h1><ul><li>Langdurige contracten</li><li>Onderhoud</li><li>Ondersteuning</li></ul></div><div class="item" onclick="openModal('kanalen')"><h1>Kanalen</h1><ul><li>Directe verkoop</li><li>Onderaanneming</li></ul></div></div><div class="item" onclick="openModal('klantsegmenten')"><h1>Klantsegmenten</h1><ul><li>Militaire organisaties</li><li>Privélegers</li><li>Particulieren (alleen met basisfunctionaliteit)</li></ul></div></div><div class="horizontal"><div class="item" onclick="openModal('kostenstructuur')"><h1>Kostenstructuur</h1><ul><li>one</li><li>two</li><li>three</li></ul></div><div class="item" onclick="openModal('inkomstenstromen')"><h1>Inkomstenstromen</h1><ul><li>Verkoop</li><li>Onderhoud</li><li>Modernisering</li><li>On-site productie</li></ul></div></div></div></main><footer><p>© 2023 <a href="https://github.com/aroleaf">Leaf</a> (website, graphics), Hanze HBO-ICT klas 1F leerteam 1 (content)</p></footer><div class="modal" id="key-partners" onclick="this.classList.remove('active')"><div class="content" onclick="event.stopPropagation()"><div class="content"><h1>Key partners</h1><ul><li>one</li><li>two</li><li>three</li></ul></div></div></div><div class="modal" id="kernactiviteiten" onclick="this.classList.remove('active')"><div class="content" onclick="event.stopPropagation()"><div class="content"><h1>Kernactiviteiten</h1><ul><li>one</li><li>two</li><li>three</li></ul></div></div></div><div class="modal" id="key-resources" onclick="this.classList.remove('active')"><div class="content" onclick="event.stopPropagation()"><div class="content"><h1>Key resources</h1><ul><li>one</li><li>two</li><li>three</li></ul></div></div></div><div class="modal" id="waardeproposities" onclick="this.classList.remove('active')"><div class="content" onclick="event.stopPropagation()"><div class="content"><h1>Waardeproposities</h1><ul><li>one</li><li>two</li><li>three</li></ul></div></div></div><div class="modal" id="klantrelaties" onclick="this.classList.remove('active')"><div class="content" onclick="event.stopPropagation()"><div class="content"><h1>Klantrelaties</h1><ul><li>one</li><li>two</li><li>three</li></ul></div></div></div><div class="modal" id="kanalen" onclick="this.classList.remove('active')"><div class="content" onclick="event.stopPropagation()"><div class="content"><h1>Kanalen</h1><ul><li>one</li><li>two</li><li>three</li></ul></div></div></div><div class="modal" id="klantsegmenten" onclick="this.classList.remove('active')"><div class="content" onclick="event.stopPropagation()"><div class="content"><h1>Klantsegmenten</h1><h3>Totale wereldwijde uitgave aan defensie</h3><canvas width="768px" height="384px" id="total-spending"></canvas><h3>Uitgave aan defensie van enkele grootmachten</h3><canvas width="768px" height="512px" id="spending-per-country"></canvas><script>const labels = [
+  '1990',
+  '1991',
+  '1992',
+  '1993',
+  '1994',
+  '1995',
+  '1996',
+  '1997',
+  '1998',
+  '1999',
+  '2000',
+  '2001',
+  '2002',
+  '2003',
+  '2004',
+  '2005',
+  '2006',
+  '2007',
+  '2008',
+  '2009',
+  '2010',
+  '2011',
+  '2012',
+  '2013',
+  '2014',
+  '2015',
+  '2016',
+  '2017',
+  '2018',
+  '2019',
+  '2020',
+  '2021',
+  '2022',
+];
+
+const total = [
+  1526.849063570,
+  0908.808945430,
+  1287.923872040,
+  1234.527911140,
+  1243.847091960,
+  1162.896520060,
+  1111.551006760,
+  1126.754409350,
+  1114.626637820,
+  1137.592276590,
+  1177.437308330,
+  1202.916647300,
+  1280.635741110,
+  1374.409056460,
+  1461.369680420,
+  1515.358117260,
+  1566.295961670,
+  1630.820529990,
+  1725.107844540,
+  1845.042413790,
+  1881.673489130,
+  1887.919504790,
+  1871.297946020,
+  1838.842350010,
+  1834.008226990,
+  1862.010986660,
+  1871.667592250,
+  1893.086161510,
+  1950.160451710,
+  2028.619652270,
+  2091.927009770,
+  2104.065981740,
+  2181.920960570, 
+];
+
+const USA = [
+  43.54509484013,
+  47.04545732737,
+  45.59259181798,
+  38.11320679146,
+  38.56901350486,
+  38.29428307983,
+  38.56613464539,
+  39.88994744898,
+  41.22212583262,
+  40.76040066657,
+  39.34371127258,
+  39.51257994365,
+  44.24526599831,
+  52.34312227707,
+  60.25078254470,
+  61.65363503846,
+  64.21761952833,
+  73.44803201417,
+  72.91540766974,
+  64.01050666980,
+  63.97911197027,
+  66.56955257313,
+  65.45248755424,
+  63.83772485543,
+  66.99546865429,
+  59.99020571932,
+  53.32736608771,
+  52.07500843205,
+  55.83291640525,
+  56.56760204082,
+  58.33237179487,
+  67.50068775791,
+  68.46257861161,
+];
+
+const Russia = [
+  1.73902577110,
+  1.37719408487,
+  0.83162040961,
+  0.72245151970,
+  0.93668622250,
+  0.98314054139,
+  0.87445123889,
+  1.07478578225,
+  1.25422789271,
+  0.95533757696,
+  0.93556961034,
+  0.98565765567,
+  1.05613606249,
+  1.25032755925,
+  1.53018390396,
+  1.97597515144,
+  2.25149342466,
+  2.60768994156,
+  3.00040494509,
+  2.22514453995,
+  2.08622046005,
+  2.37987148241,
+  2.10288622340,
+  2.45251298108,
+  2.69147028746,
+  2.58059415828,
+  2.64415983609,
+  3.62206849181,
+  4.35902120891,
+  4.61304039688,
+  5.05232147066,
+  5.30004812320,
+  5.18668525348,
+];
+
+const China = [
+  1.03147558404,
+  1.03803949418,
+  1.16885839107,
+  1.29105367596,
+  1.46604883180,
+  1.82799736877,
+  1.90410583433,
+  2.12070260795,
+  2.11237312291,
+  2.04313481152,
+  2.10346060969,
+  1.89309822376,
+  1.77955313766,
+  2.06798399764,
+  2.68732086578,
+  3.10039159080,
+  3.85535806893,
+  4.02247810375,
+  4.64187757555,
+  3.90222158828,
+  4.89408112510,
+  5.68675206960,
+  5.46610178202,
+  5.52987948061,
+  5.10277742212,
+  4.63077277372,
+  4.79601096209,
+  5.37001813487,
+  5.54583193278,
+  5.18215652866,
+  5.28620468297,
+  6.11942821737,
+  5.56645521853,
+];
+
+
+
+defaultChart(document.querySelector('#total-spending'), {
+  type: 'line',
+  x: 'Jaar',
+  y: 'uitgave in miljarden $',
+  data: {
+    labels,
+    datasets: [{
+      label: 'Totale uitgave',
+      data: total,
+      pointStyle: false,
+      borderColor: '#26a6f2',
+      backgroundColor: '#26a6f2',
+    }],
+  },
+});
+
+defaultChart(document.querySelector('#spending-per-country'), {
+  type: 'line',
+  x: 'Jaar',
+  y: 'uitgave in miljarden $',
+  data: {
+    labels,
+    datasets: [{
+      label: 'USA',
+      data: USA,
+      pointStyle: false,
+      borderColor: '#26a6f2',
+      backgroundColor: '#26a6f2',
+    }, {
+      label: 'China',
+      data: China,
+      pointStyle: false,
+      borderColor: '#ffffff',
+      backgroundColor: '#ffffff',
+    }, {
+      label: 'Rusland',
+      data: Russia,
+      pointStyle: false,
+      borderColor: '#595959',
+      backgroundColor: '#595959',
+    }],
+  },
+});</script></div></div></div><div class="modal" id="kostenstructuur" onclick="this.classList.remove('active')"><div class="content" onclick="event.stopPropagation()"><div class="content"><h1>kostenstructuur</h1><ul><li>one</li><li>two</li><li>three</li></ul></div></div></div><div class="modal" id="inkomstenstromen" onclick="this.classList.remove('active')"><div class="content" onclick="event.stopPropagation()"><div class="content"><h1>Inkomstenstromen</h1><ul><li>one</li><li>two</li><li>three</li></ul></div></div></div></body></html>
